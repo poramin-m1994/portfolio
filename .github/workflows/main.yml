@@ -18,8 +18,6 @@ jobs:
       with:
         node-version: 18
 
-    - name: Install dependencies
-      run: npm install  # หากไม่มี dependencies ให้ลบขั้นตอนนี้ออก
 
     - name: Build project
       run: npm run build  # หากไม่มีขั้นตอน build ให้ลบขั้นตอนนี้ออก
@@ -30,3 +28,8 @@ jobs:
       run: |
         echo $FIREBASE_SERVICE_ACCOUNT > serviceAccount.json
         firebase deploy --only hosting --token "$(firebase login:ci --json | jq -r '.ciTokens[0]')"
+
+    - name: Display working directory
+      run: pwd
+    - name: List files
+      run: ls -la
