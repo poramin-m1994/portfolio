@@ -33,7 +33,8 @@ jobs:
       env:
         GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
       run: |
-        echo serviceAccount.json
+        echo "$GOOGLE_APPLICATION_CREDENTIALS" > serviceAccount.json
+        cat serviceAccount.json
         
       
     - name: Deploy Firebase
