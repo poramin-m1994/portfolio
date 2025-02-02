@@ -27,10 +27,15 @@ jobs:
     - name: List files
       run: ls -la
 
+    - name: List files in Portfolio_Poramin
+      run: |
+        cd Portfolio_Poramin
+        ls -la
+
     - name: Deploy to Firebase
       env:
         FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
       run: |
         echo $FIREBASE_SERVICE_ACCOUNT > serviceAccount.json
-        cd Portfolio_Poramin  
+        cd Portfolio_Poramin/firebase_application/public
         firebase deploy --only hosting
