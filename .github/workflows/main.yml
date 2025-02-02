@@ -35,5 +35,6 @@ jobs:
       run: |
         echo serviceAccount.json
         echo "$GOOGLE_APPLICATION_CREDENTIALS" > serviceAccount.json
+        cat serviceAccount.json
         cd Portfolio_Poramin/firebase_application
         firebase deploy --only hosting --project portfolioporamin
