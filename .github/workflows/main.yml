@@ -32,4 +32,5 @@ jobs:
         FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
       run: |
         echo $FIREBASE_SERVICE_ACCOUNT > serviceAccount.json
+        cd Portfolio_Poramin  
         firebase deploy --only hosting
