@@ -24,18 +24,15 @@ jobs:
     - name: Display working directory
       run: pwd
 
-    - name: List files
-      run: ls -la
-
-    - name: List files in Portfolio_Poramin
+    - name: List files in Portfolio_Poramin/firebase_application
       run: |
-        cd Portfolio_Poramin/firebase_application/public
+        cd Portfolio_Poramin/firebase_application
         ls -la
 
     - name: Deploy to Firebase
       env:
-        FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
       run: |
         echo $FIREBASE_SERVICE_ACCOUNT > serviceAccount.json
-        cd Portfolio_Poramin/firebase_application/public
-        firebase deploy --only hosting
+        cd Portfolio_Poramin/firebase_application
+        firebase deploy --only hosting --project your-project-id
