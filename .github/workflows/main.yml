@@ -29,14 +29,6 @@ jobs:
         cd Portfolio_Poramin/firebase_application
         ls -la
 
-    - name: Display serviceAccount.json
-      env:
-        GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
-      run: |
-        echo "$GOOGLE_APPLICATION_CREDENTIALS" > serviceAccount.json
-        cat serviceAccount.json
-        
-      
     - name: Deploy Firebase
       env:
         GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
