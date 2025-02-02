@@ -18,14 +18,18 @@ jobs:
       with:
         node-version: 18
 
+    - name: Install Firebase CLI
+      run: npm install -g firebase-tools  # ขั้นตอนติดตั้ง Firebase CLI
+
     - name: Deploy to Firebase
       env:
         FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
       run: |
         echo $FIREBASE_SERVICE_ACCOUNT > serviceAccount.json
-        firebase deploy --only hosting --token "$(firebase login:ci --json | jq -r '.ciTokens[0]')"
+        firebase deploy --only hosting
 
     - name: Display working directory
       run: pwd
+
     - name: List files
       run: ls -la
