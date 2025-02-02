@@ -31,8 +31,8 @@ jobs:
 
     - name: Deploy to Firebase
       env:
-          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
       run: |
-        echo $FIREBASE_SERVICE_ACCOUNT > serviceAccount.json
+        echo "$FIREBASE_SERVICE_ACCOUNT" > serviceAccount.json
         cd Portfolio_Poramin/firebase_application
-        firebase deploy --only hosting --project your-project-id
+        firebase deploy --only hosting --project portfolioporamin
