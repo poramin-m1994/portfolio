@@ -31,8 +31,8 @@ jobs:
 
     - name: Deploy to Firebase
       env:
-        FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
       run: |
-        echo "$FIREBASE_SERVICE_ACCOUNT" > serviceAccount.json
+        echo "$GOOGLE_APPLICATION_CREDENTIALS" > serviceAccount.json
         cd Portfolio_Poramin/firebase_application
         firebase deploy --only hosting --project portfolioporamin
