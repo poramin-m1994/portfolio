@@ -1,0 +1,32 @@
+name: Deploy to Firebase Hosting
+
+on:
+  push:
+    branches:
+      - feat  # หรือสาขาที่คุณต้องการให้ deploy อัตโนมัติ
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: Install dependencies
+      run: npm install  # หากไม่มี dependencies ให้ลบขั้นตอนนี้ออก
+
+    - name: Build project
+      run: npm run build  # หากไม่มีขั้นตอน build ให้ลบขั้นตอนนี้ออก
+
+    - name: Deploy to Firebase
+      env:
+        FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      run: |
+        echo $FIREBASE_SERVICE_ACCOUNT > serviceAccount.json
+        firebase deploy --only hosting --token "$(firebase login:ci --json | jq -r '.ciTokens[0]')"
